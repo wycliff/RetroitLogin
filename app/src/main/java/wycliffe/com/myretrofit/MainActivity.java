@@ -29,9 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private final static String API_KEY = "Q4Ja6isRqtlJHPgYaU8hUyvs0yLqHgfo";
-//    private final static String EMAIL = "wycliffnyakemwa@gmail.com";
-//    private final static String PASSWORD = "12345";
+    private final static String API_KEY = "*********************************";
+
 
     ProgressDialog progressDialog;
 
@@ -149,9 +148,13 @@ public class MainActivity extends AppCompatActivity {
                 ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
                 //Toast.makeText(MainActivity.this,ApiClient.getClient().toString() , Toast.LENGTH_SHORT).show();
-                // Giving it the info from the edit tet views.
 
+
+                // Giving it the info from the edit text views.
                 Call<Modeler> call = apiService.getLogged(API_KEY,ePassword,eEmail);
+
+
+
                 call.enqueue(new Callback<Modeler>() {
                     @Override
                     public void onResponse(Call<Modeler> call, Response<Modeler> response) {
