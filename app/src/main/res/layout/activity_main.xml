@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="wycliffe.com.myretrofit.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="#fff"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+
+        <!-- adding the toolbar -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical"
+            android:id="@+id/toolLayout">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/my_horizontal_margin"
+            android:paddingRight="@dimen/my_horizontal_margin"
+            android:background="#fff"
+            android:layout_below="@id/toolLayout">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:ems="10"
+                        android:id="@+id/etEmail"
+                        android:hint="@string/hint_email"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+
+                        android:layout_marginTop="50dp"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/input_layout_email"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:ems="10"
+                        android:id="@+id/etPassword"
+                        android:layout_below="@+id/etEmail"
+                        android:layout_alignRight="@+id/etEmail"
+                        android:layout_alignEnd="@+id/etEmail"
+                        android:layout_marginTop="60dp"
+                        android:hint="@string/hint_password" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/showPassword"
+                    android:layout_below="@+id/input_layout_password"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/showPassword"
+                    android:checked="false" />
+
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="LOGIN"
+                    android:id="@+id/buttonLogin"
+                    android:layout_below="@+id/showPassword"
+                    android:layout_marginTop="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@color/colorPrimary"
+                    android:textColor="#fff"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:textAllCaps="false"
+                    android:text="Not registered? CLICK HERE"
+                    android:textSize="15sp"
+                    android:id="@+id/btnRegister"
+                    android:layout_below="@id/buttonLogin"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    style="?android:attr/borderlessButtonStyle"
+                    />
+
+
+                <!--android:onClick="loginClicked"-->
+                <!--"#fafafa"-->
+            </RelativeLayout>
+        </FrameLayout>
+    </RelativeLayout>
+
+</ScrollView>

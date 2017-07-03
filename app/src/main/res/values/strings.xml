@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">myRetrofit</string>
+    <string name="enterNewPassword1">Enter New password</string>
+    <string name="enterCurrentPassword"> Enter Current Password </string>
+
+    <!--<string name="confirmPassword">Confirm password</string> -->
+    <string name="showPassword">Show password </string>
+
+
+    <string name="hint_email"> Email: johndoe@gmail.com </string>
+    <string name="hint_password"> Password </string>
+
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+    <string name="err_msg_field"> Field Required </string>
+
+</resources>
+
+
