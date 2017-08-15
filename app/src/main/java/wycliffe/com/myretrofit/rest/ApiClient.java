@@ -1,4 +1,4 @@
-package wycliffe.com.myretrofit;
+package wycliffe.com.myretrofit.rest;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 // Creating a retrofit instance
 
 public class ApiClient {
-    public static final String BASE_URL ="http://**************";
+    public static final String BASE_URL ="http://52.89.75.169";
     private static Retrofit retrofit = null;
 
 

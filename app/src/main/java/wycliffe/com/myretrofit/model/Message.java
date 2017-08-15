@@ -1,4 +1,4 @@
-package wycliffe.com.myretrofit;
+package wycliffe.com.myretrofit.model;
 
 /**
  * Created by Wycliffe on 6/28/2017.

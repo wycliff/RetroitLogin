@@ -1,4 +1,4 @@
-package wycliffe.com.myretrofit;
+package wycliffe.com.myretrofit.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Wycliffe on 6/28/2017.
  */
 
+// Pretty Straight forward
 public class Modeler {
     @SerializedName("status")
     @Expose

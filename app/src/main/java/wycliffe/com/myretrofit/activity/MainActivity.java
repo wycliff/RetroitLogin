@@ -1,6 +1,8 @@
-package wycliffe.com.myretrofit;
+package wycliffe.com.myretrofit.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -16,20 +18,27 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import wycliffe.com.myretrofit.R;
+import wycliffe.com.myretrofit.model.Message;
+import wycliffe.com.myretrofit.model.Modeler;
+import wycliffe.com.myretrofit.rest.ApiClient;
+import wycliffe.com.myretrofit.rest.ApiInterface;
+
+import static wycliffe.com.myretrofit.rest.Constants.API_KEY;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private final static String API_KEY = "*********************************";
+
 
 
     ProgressDialog progressDialog;
@@ -120,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
 //=============================  Setting up connection to the  API ( Login logic using RETROFIT) ==============================================
 
         Button sendRequesButton = (Button) findViewById(R.id.buttonLogin);
+
         sendRequesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,15 +154,11 @@ public class MainActivity extends AppCompatActivity {
 
                 //prepare call in retrofit 2.0
                 // get type retrofit object stored into service.
-
                 ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-
-                //Toast.makeText(MainActivity.this,ApiClient.getClient().toString() , Toast.LENGTH_SHORT).show();
 
 
                 // Giving it the info from the edit text views.
                 Call<Modeler> call = apiService.getLogged(API_KEY,ePassword,eEmail);
-
 
 
                 call.enqueue(new Callback<Modeler>() {
@@ -161,7 +167,9 @@ public class MainActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
+                        // Response is either OK or BAD REQUEST( incorrect email / password)
                         Toast.makeText(MainActivity.this, "This is the Response: " + response.message(), Toast.LENGTH_SHORT).show();
+
 
                         try {
 
@@ -171,8 +179,24 @@ public class MainActivity extends AppCompatActivity {
 
                             if (status==true){
 
+
+                                // Getting all details from the response
+                                String name, gender,id,phone, type, yos, regno, course, baptismal_status, residence;
+
                                 Message messageObject  = response.body().getMessage();
-                                String name = messageObject.getName();
+                                name = messageObject.getName();
+                                gender = messageObject.getGender();
+                                id = messageObject.getId();
+                                phone = messageObject.getPhone();
+                                type = messageObject.getType();
+                                yos = messageObject.getYos();
+                                regno = messageObject.getRegno();
+                                course = messageObject.getCourse();
+                                baptismal_status = messageObject.getBaptismalStatus();
+                                residence = messageObject.getResidence();
+
+
+
                                 Toast.makeText(MainActivity.this, "This is the Name : " + name , Toast.LENGTH_SHORT).show();
 
                                 //intent which to next
@@ -180,17 +204,80 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(in);
                                 MainActivity.this.finish();
                             }
-                        }catch (NullPointerException e){
+                        }
+                        catch (NullPointerException e){
 
-                            Toast.makeText(MainActivity.this, " Exception Message: " + e.getMessage() , Toast.LENGTH_SHORT).show();
+                            // With incorrect email or Password
+                            //Toast.makeText(MainActivity.this, " Exception Message: " + e.getMessage() , Toast.LENGTH_SHORT).show();
+                            //=====================When failed to login==================================================================================
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            builder.setTitle("LOGIN ERROR");
+
+                            TextView Message = new TextView(MainActivity.this);
+
+                            //Layout
+                            LinearLayout the_layout = new LinearLayout(MainActivity.this);
+
+                            //setting text of view to the data we have
+                            Message.setText("Incorrect Email or Password");
+                            Message.setTextSize(17);
+                            Message.setHighlightColor(000);
+                            Message.setHeight(85);
+
+
+                            //bind Views with the dialog
+                            builder.setView(Message);
+
+                            // positive button
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {}
+                            });
+                            builder.show();
+
+//================================================================================================================================================
+
                         }
                     }
+
 
                     @Override
                     public void onFailure(Call<Modeler> call, Throwable t) {
 
+                       // Failure to connect to the endPoint, this is a network problem.
                         progressDialog.dismiss();
-                        Toast.makeText(MainActivity.this, "CONECTION PROBLEM:  "+  t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                        //Toast.makeText(MainActivity.this, "CONECTION PROBLEM:  "+  t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                       //=====================When failed to login==================================================================================
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setTitle("LOGIN ERROR");
+
+                        TextView Message = new TextView(MainActivity.this);
+
+                        //Layout
+                        LinearLayout the_layout = new LinearLayout(MainActivity.this);
+
+                        //setting text of view to the data we have
+                        Message.setText("Please Check Connection");
+                        Message.setTextSize(17);
+                        Message.setHighlightColor(000);
+                        Message.setHeight(85);
+
+
+                        //bind Views with the dialog
+                        builder.setView(Message);
+
+                        // positive button
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {}
+                        });
+                        builder.show();
+
+//================================================================================================================================================
+
                     }
                 });
 

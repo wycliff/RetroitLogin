@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context="wycliffe.com.myretrofit.MainActivity">
+    tools:context="wycliffe.com.myretrofit.activity.MainActivity">
 
     <RelativeLayout
         android:layout_width="368dp"
@@ -54,7 +54,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
+                        android:inputType="textAutoComplete"
                         android:ems="10"
                         android:id="@+id/etEmail"
                         android:hint="@string/hint_email"
